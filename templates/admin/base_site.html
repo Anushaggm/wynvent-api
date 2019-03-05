@@ -1,0 +1,60 @@
+{% extends "admin/base.html" %}
+
+{% block extrahead %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#id_city').attr('onchange','myFunction()');
+    })
+function getCookie(name) {
+ var value = "; " + document.cookie;
+ var parts = value.split("; " + name + "=");
+ if (parts.length == 2) return parts.pop().split(";").shift();
+}
+</script>
+<script>
+function myFunction() {
+    var x = document.getElementById("id_city").value;
+    $status = 1;
+    var $csrfmiddlewaretoken  = getCookie('csrftoken');
+    if ($status==1) {
+            //preparing form data
+           var data = new FormData()
+           data.append('city',x);
+           // ajax method
+           $.ajax({
+               data: data,
+               type: "POST",
+               url:  '/api/v1/get-location-coordinates/',
+               dataType: 'json',
+               processData: false, // Don't process the files
+               contentType: false,
+               beforeSend: function (xhr, settings) { // to send csrf token
+                   xhr.setRequestHeader("X-CSRFToken", $csrfmiddlewaretoken);
+               },
+               success: function (data) { // on success..
+                   if(data.coordinates) {
+                       var initList = (data.coordinates).split(" ")
+                       console.log(data.coordinates,'gggggggggggggggggggggggg')
+                       initList.splice(0, 1);
+                       initList[0] = initList[0].replace('(', "")
+                       initList[1] = initList[1].replace(')', "")
+                       var lat = initList[1]
+                       var long = initList[0]
+                       console.log(lat,long,'oooooooooooooooooooooooooooooo')
+                       $('#coordinates-mw-overlay-latitude').val(lat)
+                       $('#coordinates-mw-overlay-longitude').val(long)
+                       $('#coordinates-mw-google-address-input').val(data.name)
+                       var a=$("#coordinates-mw-overlay-latitude").val();
+                       var b=$("#coordinates-mw-overlay-longitude").val();
+                       $('#coordinates-mw-google-address-input').focus();
+                       $('.mw-btn-coordinates-done').click()
+                   }
+               },
+               error: function (data) { //calls when internal server error occurs.
+               }
+           });
+       }
+}
+</script>
+{% endblock %}

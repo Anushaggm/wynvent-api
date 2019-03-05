@@ -1,0 +1,1 @@
+POST_URL = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction&"

@@ -1,0 +1,43 @@
+# System/Python
+appdirs==1.4.3
+oauthlib==2.0.2
+packaging==16.8
+psycopg2==2.7.1
+pyparsing==2.2.0
+python-openid==2.2.5
+pytz==2017.2
+requests==2.14.2
+requests-oauthlib==0.8.0
+six==1.10.0
+urllib3==1.14
+
+# Django
+Django==1.11.1
+django-allauth==0.24.1
+django-haystack==2.6.0
+django-rest-auth==0.9.1
+djangorestframework==3.6.3
+django-extensions==1.7.9
+django-extra-fields==0.9
+django-cors-headers==2.1.0
+dj-database-url==0.4.2
+django-map-widgets==0.1.9
+sendgrid-django==4.0.4
+django-storages==1.5.2
+boto3==1.4.4
+Pillow==4.1.1
+django-twilio==0.8.0
+twilio==6.4.3
+django-multiselectfield==0.1.7
+paypalrestsdk==1.13.1
+jsonfield==2.0.2
+django-solo==1.1.2
+#importd==0.4.3
+django-blog-zinnia==0.18.1
+pycrypto==2.6.1
+crypto==1.4.1
+
+# Elasticsearch
+#elasticsearch==5.3.0
+elasticsearch==2.4.1
+geopy==1.11.0

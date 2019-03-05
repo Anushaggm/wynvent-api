@@ -1,0 +1,3 @@
+{{ object.locality }}
+{{ object.city }}
+{{ object.zipcode }}
